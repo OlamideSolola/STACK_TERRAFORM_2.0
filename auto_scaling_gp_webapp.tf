@@ -19,6 +19,7 @@ resource "aws_autoscaling_group" "WebApp-ASG" {
   health_check_grace_period = 60
   min_size               = var.ASG_Components["min_size"]
   max_size               = var.ASG_Components["max_size"]
+  name                   = "Clixx-ASG${count.index}"
 
   tag {
     key                  = "Name"
