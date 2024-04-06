@@ -23,7 +23,9 @@ resource "aws_launch_template" "WebApp-ASG-LC" {
 #-------------------- Creating autoscaling group ---------------------
 resource "aws_autoscaling_group" "WebApp-ASG" {
   count                  = length(var.availability_zones)
-  launch_configuration   = aws_launch_template.WebApp-ASG-LC.name
+  launch_template {
+    id = aws_launch_template.WebApp-ASG-LC.id
+  }
   vpc_zone_identifier    = aws_subnet.Clixx-App-Private-Subnet[*].id
  target_group_arns       = [aws_lb_target_group.WebAppTFTG.arn]
   health_check_type      = "EC2"
