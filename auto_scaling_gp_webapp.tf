@@ -3,7 +3,7 @@ resource "aws_launch_template" "WebApp-ASG-LC" {
   image_id                 = data.aws_ami.stack_ami.id
   instance_type            = var.ASG_launch_Components["instance_type"]
   vpc_security_group_ids   = [aws_security_group.stack-webapp-sg.id, aws_security_group.Bastion-sg.id]
-  user_data                = data.template_file.bootstrap_clixx.rendered
+  user_data                = "${base64encode(data.template_file.bootstrap_clixx.rendered)}"
   name                     = "Clixx-ASG-LC"
   dynamic "block_device_mappings" {
     for_each               = var.EBS_Configuration
