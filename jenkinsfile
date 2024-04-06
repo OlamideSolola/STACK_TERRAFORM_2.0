@@ -26,20 +26,21 @@ pipeline {
                 sh "terraform plan -out=tfplan -input=false"
             }
         }
-        //  stage('Final Deployment Approval') {
-        //     steps {
-        //         script {
-        //             def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: true, description: 'Apply terraform', name: 'confirm'] ])
-        //         }
-        //     }
-        //  }
-        // stage('Terraform Final Action'){
-        //     steps {
-        //         script{stage("Performing Terraform ${ACTION}")}
-        //         sh "terraform ${ACTION} --auto-approve"
-        //         //  sh "terraform apply  -input=false tfplan"
-        //     }
-        // }
+         stage('Final Deployment Approval') {
+            steps {
+                script {
+                    def userInput = input(id: 'confirm', message: 'Apply Terraform?', parameters: [ [$class: 'BooleanParameterDefinition', defaultValue: true, description: 'Apply terraform', name: 'confirm'] ])
+                }
+            }
+         }
+        stage('Terraform Final Action'){
+            steps {
+                slackSend (color: '#FFFF00', message: "STARTED ${ACTION}: Job by ${RUNNER}' ${env.JOB_NAME} [${env.BUILD_NUMBER}]' (${env.BUILD_URL})")
+                script{stage("Performing Terraform ${ACTION}")}
+                sh "terraform ${ACTION} --auto-approve"
+                //  sh "terraform apply  -input=false tfplan"
+            }
+        }
         // // stage('Terraform Destroy'){
         // //     steps {
         // //          sh "terraform destroy -auto-approve"
