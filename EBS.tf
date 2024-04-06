@@ -1,83 +1,83 @@
-#---------------------- Creating EBS Volume -------------------------
-resource "aws_ebs_volume" "clixx-ebs-vol1" {
-  availability_zone = var.availability_zone
-  size = 20
+# #---------------------- Creating EBS Volume -------------------------
+# resource "aws_ebs_volume" "clixx-ebs-vol1" {
+#   availability_zone = var.availability_zone
+#   size = 20
 
-  tags = {
-    "name" = "Vol1"
-  }
-}
+#   tags = {
+#     "name" = "Vol1"
+#   }
+# }
 
-resource "aws_ebs_volume" "clixx-ebs-vol2" {
-  availability_zone = var.availability_zone
-  size = 20
+# resource "aws_ebs_volume" "clixx-ebs-vol2" {
+#   availability_zone = var.availability_zone
+#   size = 20
 
-  tags = {
-    "name" = "Vol2"
-  }
-}
+#   tags = {
+#     "name" = "Vol2"
+#   }
+# }
 
-resource "aws_ebs_volume" "clixx-ebs-vol3" {
-  availability_zone = var.availability_zone
-  size = 20
+# resource "aws_ebs_volume" "clixx-ebs-vol3" {
+#   availability_zone = var.availability_zone
+#   size = 20
 
-  tags = {
-    "name" = "Vol3"
-  }
-}
+#   tags = {
+#     "name" = "Vol3"
+#   }
+# }
 
-resource "aws_ebs_volume" "clixx-ebs-vol4" {
-  availability_zone = var.availability_zone
-  size = 20
+# resource "aws_ebs_volume" "clixx-ebs-vol4" {
+#   availability_zone = var.availability_zone
+#   size = 20
 
-  tags = {
-    "name" = "Vol4"
-  }
-}
+#   tags = {
+#     "name" = "Vol4"
+#   }
+# }
 
-resource "aws_ebs_volume" "clixx-ebs-vol-backup" {
-  availability_zone = var.availability_zone
-  size = 20
+# resource "aws_ebs_volume" "clixx-ebs-vol-backup" {
+#   availability_zone = var.availability_zone
+#   size = 20
 
-  tags = {
-    "name" = "Vol-backup"
-  }
-}
-
-
-#------------------------Attaching the EBS volume ----------------------
-resource "aws_volume_attachment" "clixx-vol1-mount" {
-  count = length(aws_autoscaling_group.WebApp-ASG)
-  device_name = "/dev/sdb"
-  instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
-  volume_id = aws_ebs_volume.clixx-ebs-vol1.id
-}
-
-resource "aws_volume_attachment" "clixx-vol2-mount" {
-  count = length(aws_autoscaling_group.WebApp-ASG)
-  device_name = "/dev/sdc"
-  instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
-  volume_id = aws_ebs_volume.clixx-ebs-vol2.id
-}
-
-resource "aws_volume_attachment" "clixx-vol3-mount" {
-  count = length(aws_autoscaling_group.WebApp-ASG)
-  device_name = "/dev/sdd"
-  instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
-  volume_id = aws_ebs_volume.clixx-ebs-vol3.id
-}
-
-resource "aws_volume_attachment" "clixx-vol4-mount" {
-  count = length(aws_autoscaling_group.WebApp-ASG)
-  device_name = "/dev/sde"
-  instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
-  volume_id = aws_ebs_volume.clixx-ebs-vol4.id
-}
+#   tags = {
+#     "name" = "Vol-backup"
+#   }
+# }
 
 
-resource "aws_volume_attachment" "clixx-vol-backup-mount" {
-  count = length(aws_autoscaling_group.WebApp-ASG)
-  device_name = "/dev/sdf"
-  instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
-  volume_id = aws_ebs_volume.clixx-ebs-vol-backup.id
-}
+# #------------------------Attaching the EBS volume ----------------------
+# resource "aws_volume_attachment" "clixx-vol1-mount" {
+#   count = length(aws_autoscaling_group.WebApp-ASG)
+#   device_name = "/dev/sdb"
+#   instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
+#   volume_id = aws_ebs_volume.clixx-ebs-vol1.id
+# }
+
+# resource "aws_volume_attachment" "clixx-vol2-mount" {
+#   count = length(aws_autoscaling_group.WebApp-ASG)
+#   device_name = "/dev/sdc"
+#   instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
+#   volume_id = aws_ebs_volume.clixx-ebs-vol2.id
+# }
+
+# resource "aws_volume_attachment" "clixx-vol3-mount" {
+#   count = length(aws_autoscaling_group.WebApp-ASG)
+#   device_name = "/dev/sdd"
+#   instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
+#   volume_id = aws_ebs_volume.clixx-ebs-vol3.id
+# }
+
+# resource "aws_volume_attachment" "clixx-vol4-mount" {
+#   count = length(aws_autoscaling_group.WebApp-ASG)
+#   device_name = "/dev/sde"
+#   instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
+#   volume_id = aws_ebs_volume.clixx-ebs-vol4.id
+# }
+
+
+# resource "aws_volume_attachment" "clixx-vol-backup-mount" {
+#   count = length(aws_autoscaling_group.WebApp-ASG)
+#   device_name = "/dev/sdf"
+#   instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
+#   volume_id = aws_ebs_volume.clixx-ebs-vol-backup.id
+# }

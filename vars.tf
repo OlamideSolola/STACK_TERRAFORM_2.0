@@ -186,3 +186,32 @@ variable "availability_zones" {
  description = "Availability Zones"
  default     = ["us-east-1a", "us-east-1b"]
 }
+
+variable "EBS_Configuration" {
+  type = list(object({
+    device_name = string
+    volume_size = number
+  }))
+  default = [ 
+    {
+    device_name = "/dev/sdb"
+    volume_size = 8
+  },
+  {
+    device_name = "/dev/sdc"
+    volume_size = 8
+  },
+  {
+    device_name = "/dev/sdd"
+    volume_size = 8
+  },
+  {
+    device_name = "/dev/sde"
+    volume_size = 8
+  },
+  {
+    device_name = "/dev/sdf"
+    volume_size = 8
+  }
+   ]
+}
