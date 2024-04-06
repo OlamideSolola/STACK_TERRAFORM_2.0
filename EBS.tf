@@ -47,32 +47,37 @@ resource "aws_ebs_volume" "clixx-ebs-vol-backup" {
 
 #------------------------Attaching the EBS volume ----------------------
 resource "aws_volume_attachment" "clixx-vol1-mount" {
+  count = length(aws_autoscaling_group.WebApp-ASG)
   device_name = "/dev/sdb"
-  instance_id = aws_autoscaling_group.WebApp-ASG[0].id
+  instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
   volume_id = aws_ebs_volume.clixx-ebs-vol1.id
 }
 
 resource "aws_volume_attachment" "clixx-vol2-mount" {
+  count = length(aws_autoscaling_group.WebApp-ASG)
   device_name = "/dev/sdc"
-  instance_id = aws_autoscaling_group.WebApp-ASG[0].id
+  instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
   volume_id = aws_ebs_volume.clixx-ebs-vol2.id
 }
 
 resource "aws_volume_attachment" "clixx-vol3-mount" {
+  count = length(aws_autoscaling_group.WebApp-ASG)
   device_name = "/dev/sdd"
-  instance_id = aws_autoscaling_group.WebApp-ASG[0].id
+  instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
   volume_id = aws_ebs_volume.clixx-ebs-vol3.id
 }
 
 resource "aws_volume_attachment" "clixx-vol4-mount" {
+  count = length(aws_autoscaling_group.WebApp-ASG)
   device_name = "/dev/sde"
-  instance_id = aws_autoscaling_group.WebApp-ASG[0].id
+  instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
   volume_id = aws_ebs_volume.clixx-ebs-vol4.id
 }
 
 
 resource "aws_volume_attachment" "clixx-vol-backup-mount" {
+  count = length(aws_autoscaling_group.WebApp-ASG)
   device_name = "/dev/sdf"
-  instance_id = aws_autoscaling_group.WebApp-ASG[0].id
+  instance_id = aws_autoscaling_group.WebApp-ASG[count.index].id
   volume_id = aws_ebs_volume.clixx-ebs-vol-backup.id
 }
