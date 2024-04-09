@@ -1,7 +1,7 @@
 #---------- Data Source for AMI ---------
 data "aws_ami" "stack_ami" {
   owners      = ["self"]
-  name_regex  = "^ami-stack-.*"
+  name_regex  = "^ami-stack-1.*"
   most_recent = true
   filter {
     name      = "name"
