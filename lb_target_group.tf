@@ -16,9 +16,3 @@ resource "aws_lb_target_group" "WebAppTFTG" {
   }
 }
 
-# resource "aws_lb_target_group_attachment" "WebApp-Attachment" {
-#   target_group_arn      = aws_lb_target_group.WebAppTFTG.arn
-#   count                 = var.stack_controls["ec2_create"] == "Y" ? 2 : 0
-#   target_id             = element(aws_autoscaling_group.WebApp-ASG.*.id, count.index)
-#   port = 80
-# }

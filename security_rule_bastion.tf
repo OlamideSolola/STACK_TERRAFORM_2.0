@@ -70,12 +70,3 @@ resource "aws_security_group_rule" "Bastion-outbound" {
 
 }
 
-# resource "aws_security_group_rule" "http_to_asg" {
-#   security_group_id = aws_security_group.Bastion-sg.id
-#   description       = "Allow HTTP traffic from bastion to auto scaling group"
-#   type              = "egress" 
-#   from_port         = 80
-#   to_port           = 80
-#   protocol          = "tcp"
-#   source_security_group_id = aws_security_group.stack-webapp-sg.id
-# }

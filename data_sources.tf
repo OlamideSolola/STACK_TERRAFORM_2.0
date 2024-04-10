@@ -17,10 +17,7 @@ data "aws_subnets" "stack_sub" {
   }
 }
 
-# data "aws_subnet" "stack_sub" {
-#   for_each   = toset(data.aws_subnets.stack_sub.ids)
-#   id         = each.value
-# }
+
 
 
   #-------------Data source of Snapshot-----------------------------------
@@ -39,7 +36,3 @@ data "aws_secretsmanager_secret_version" "creds" {
   secret_id = "creds"
 }
 
-
-# data "local_file" "private_key" {
-#   filename = "C:/Users/olami/Downloads/EC2KeyPair.ppk"
-# }

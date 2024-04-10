@@ -6,7 +6,3 @@ resource "aws_key_pair" "Stack_KP" {
 }
 
 
-# resource "aws_key_pair" "my_key_pair" {
-#   key_name   = "my-key-pair"
-#   public_key = data.local_file.private_key.content
-# }

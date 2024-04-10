@@ -9,27 +9,7 @@ locals {
 }
 
 
-#-----------------Creating the clixx Application Server ----------------
-# resource "aws_instance" "clixx-server" {
-#   count                   = length(var.availability_zones)
-#   ami                     = data.aws_ami.stack_ami.id
-#   instance_type           = var.EC2_Components["instance_type"]
-#   vpc_security_group_ids  = [aws_security_group.stack-webapp-sg.id]
-#   user_data               = data.template_file.bootstrap_clixx.rendered
-#   key_name                = aws_key_pair.Stack_KP.key_name
-#   subnet_id               = aws_subnet.Clixx-App-Private-Subnet[count.index].id
-#  root_block_device {
-#     volume_type           = var.EC2_Components["volume_type"]
-#     volume_size           = var.EC2_Components["volume_size"]
-#     delete_on_termination = var.EC2_Components["delete_on_termination"]
-#     encrypted = var.EC2_Components["encrypted"] 
-#   }
-#   tags = {
-#    Name  = "${local.ServerPrefix != "" ? local.ServerPrefix : "Clixx_Application_Server_"}${count.index}"
-#    Environment = var.environment
-#    OwnerEmail = var.OwnerEmail
-# }
-# }
+
 
 #-----------------Creating a Bastion Server ---------------------
 resource "aws_instance" "Bastion-server" {
@@ -37,7 +17,6 @@ resource "aws_instance" "Bastion-server" {
   ami                     = data.aws_ami.stack_ami.id
   instance_type           = var.EC2_Components["instance_type"]
   vpc_security_group_ids  = [aws_security_group.Bastion-sg.id]
-  #user_data               = data.template_file.bootstrap_clixx.rendered
   key_name                = aws_key_pair.Stack_KP.key_name
   subnet_id               = aws_subnet.Bastion-Public-Subnet[count.index].id
   associate_public_ip_address = true

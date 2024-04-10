@@ -52,21 +52,6 @@ variable "AMIS" {
 }
 
 
-# variable "subnet_ids" {
-#   type = list(string)
-#   default = [ 
-#     "subnet-00cddad788c906586",
-#     "subnet-0afad0cb4550c7f21",
-#     "subnet-0b3bad804a1e1eb2f",
-#     "subnet-09c9647f120dfbacc",
-#     "subnet-0b981b46b5150151c",
-#     "subnet-0f2c576dbf88d4664" 
-#     ]
-# }
-
-# variable "subnet_id" {
-#   default = "subnet-00cddad788c906586"
-# }
 
 variable "stack_controls" {
   type = map(string)

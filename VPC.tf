@@ -3,7 +3,7 @@ resource "aws_vpc" "main" {
   cidr_block = "10.0.0.0/16"
 
   tags = {
-    Name = "Clixx-App-VPC-10subnets"
+    Name = "Clixx-App-VPC-12subnets"
   }
 }
 
@@ -87,10 +87,7 @@ resource "aws_route53_record" "www" {
   type = "CNAME"
   ttl = "300"
   records = [aws_lb.Clixx-App-lb.dns_name]
-#   latency_routing_policy {
-#     region = var.AWS_REGION
-    
-#   }
+
 }
 
 #---------------Creating internet gateway----------------
